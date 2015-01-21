@@ -1,0 +1,40 @@
+
+
+
+<?php $this->extend('block_searchable'); ?>
+<?php $this->block('content'); ?>
+
+<link rel="stylesheet" href="/system/modules/venobox/assets/venobox/venobox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/system/modules/venobox/assets/venobox/venobox.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        /* default settings */
+        $('.<?php echo  $this->boxClass?>').venobox();
+
+// for future releases
+
+//        /* custom settings */
+//        $('.venobox_custom').venobox({
+//            framewidth: '400px',        // default: ''
+//            frameheight: '300px',       // default: ''
+//            border: '10px',             // default: '0'
+//            bgcolor: '#5dff5e',         // default: '#fff'
+//            titleattr: 'data-title',    // default: 'title'
+//            numeratio: true,            // default: false
+//            infinigall: true            // default: false
+//        });
+//
+//        /* auto-open #firstlink on page load */
+//        $("#firstlink").venobox().trigger('click');
+    });
+
+
+</script>
+
+
+<?php
+    echo($this->html);
+
+?>
+
+<?php $this->endblock(); ?>
