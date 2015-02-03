@@ -3,7 +3,7 @@ namespace postyou;
 
 class VenoBoxWizard extends \Widget
 {
-    private $fieldNumber = 5;
+    private $fieldNumber = 4;
     /**
      * Submit user input
      * @var boolean
@@ -101,8 +101,6 @@ class VenoBoxWizard extends \Widget
             var elLength = copybaleChildren.length;
             var textFieldsNumber = 0;
             for (j = 0; j < elLength; j++) {
-//            if(i==1)
-//                console.log(copybaleChildren[j]);
                 if (copybaleChildren[j].nodeName == 'LABEL') {
                     copybaleChildren[j].htmlFor  = name + '[' + i + ']' + '[' + textFieldsNumber + ']';
                 }
@@ -175,10 +173,10 @@ class VenoBoxWizard extends \Widget
                         if($i==0)
                             $return .=$this->createDropdownMenuAndLabel($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
                          else
-                            if($i==1) {
-//                                $return .=$this->createCheckboxAndLabel($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
-//                                 $return .=$this->createFileBrowser($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
-                            }else
+//                            if($i==1) {
+////                                $return .=$this->createCheckboxAndLabel($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
+////                                 $return .=$this->createFileBrowser($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
+//                            }else
                             $return .=$this->createInputFieldAndLabel($this->strId,$key,$i,"",$tabindex,specialchars($fieldValue[$i]));
                     }
                     $return .= '</table><div class="ce_venoBox_btn_wrapper">';
@@ -220,7 +218,8 @@ class VenoBoxWizard extends \Widget
 
     function createInputFieldAndLabel($strID,$key,$i,$classes,$tabindex,$value){
         $return="<tr>";
-        $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale">'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i].'</label></td>';
+        $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale" class="copybale" title="'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][1].'"
+        >'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][0].'</label></td>';
         $return .= '<td><input type="text" name="'. $this->strId . '[' . $key . '][' . $i . ']' . '" class="copybale '.$classes.'"';
         $return .= 'tabindex="' . $tabindex . '" value="'.$value.'"' .  $this->getAttributes()  . '/></td>';
 
@@ -229,7 +228,8 @@ class VenoBoxWizard extends \Widget
     }
     function createCheckboxAndLabel($strID,$key,$i,$tabindex,$value){
         $return="<tr>";
-        $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale">'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i].'</label></td>';
+        $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale" class="copybale" title="'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][1].'"
+        >'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][0].'</label></td>';
         $return .= '<td><input type="checkbox" name="' . $this->strId . '[' . $key . '][' . $i . ']'.'" class="copybale"';
         if($value=='1')
             $return .=" checked='checked'";
@@ -242,7 +242,7 @@ class VenoBoxWizard extends \Widget
         $return="<tr>";
         $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale" title="'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][1].'"
 		>'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][0].'</label></td>';
-        $return .= '<td><select name="' . $this->strId . '[' . $key . '][' . $i . ']'.'" tabindex="'.$tabindex.$this->getAttributes().'" class="copybale mySelect">';
+        $return .= '<td><select name="' . $this->strId . '[' . $key . '][' . $i . ']'.'" tabindex="'.$tabindex.$this->getAttributes().'" class="copybale mySelect tl_short">';
         foreach ($GLOBALS['TL_CONFIG']['VenoBox']['types'] as $innerKey => $innerFieldValue) {
             $return .= "<option value='".$innerKey."'";
             if($innerKey==$value)
