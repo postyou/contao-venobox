@@ -1,6 +1,6 @@
 <?php
 
-namespace postYou;
+namespace postyou;
 
 class VenoElement{
 

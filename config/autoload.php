@@ -16,7 +16,7 @@
  */
 ClassLoader::addNamespaces(array
 (
-	'postYou',
+	'postyou',
 ));
 
 
@@ -26,9 +26,9 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
-	'postYou\VenoElement'   => 'system/modules/venobox/classes/VenoElement.php',
-	'postYou\VenoBoxWizard' => 'system/modules/venobox/classes/VenoBoxWizard.php',
-	'postYou\VenoBox'       => 'system/modules/venobox/classes/VenoBox.php',
+	'postyou\VenoElement'   => 'system/modules/venobox/classes/VenoElement.php',
+	'postyou\VenoBoxWizard' => 'system/modules/venobox/classes/VenoBoxWizard.php',
+	'postyou\VenoBox'       => 'system/modules/venobox/classes/VenoBox.php',
 ));
 
 

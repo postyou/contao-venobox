@@ -1,5 +1,5 @@
 <?php
-namespace postYou;
+namespace postyou;
 
 class VenoBoxWizard extends \Widget
 {
@@ -240,7 +240,8 @@ class VenoBoxWizard extends \Widget
     }
     function createDropdownMenuAndLabel($strID,$key,$i,$tabindex,$value){
         $return="<tr>";
-        $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale">'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i].'</label></td>';
+        $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale" title="'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][1].'"
+		>'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][0].'</label></td>';
         $return .= '<td><select name="' . $this->strId . '[' . $key . '][' . $i . ']'.'" tabindex="'.$tabindex.$this->getAttributes().'" class="copybale tl_short">';
         foreach ($GLOBALS['TL_CONFIG']['VenoBox']['types'] as $innerKey => $innerFieldValue) {
             $return .= "<option value='".$innerKey."'";

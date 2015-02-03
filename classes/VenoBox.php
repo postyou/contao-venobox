@@ -1,6 +1,6 @@
 <?
 
-namespace postYou;
+namespace postyou;
 
 
 class VenoBox extends \ContentElement

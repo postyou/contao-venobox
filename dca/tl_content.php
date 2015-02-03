@@ -23,5 +23,5 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
 
 );
 
-$GLOBALS['TL_CONFIG']['VenoBox']['types']=array("image","iframe","inline","ajax","youtube","vimeo") ;
+
 
