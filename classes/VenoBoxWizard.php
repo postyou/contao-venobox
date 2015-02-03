@@ -179,7 +179,7 @@ class VenoBoxWizard extends \Widget
 //                                $return .=$this->createCheckboxAndLabel($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
 //                                 $return .=$this->createFileBrowser($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
                             }else
-                            $return .=$this->createInputFieldAndLabel($this->strId,$key,$i,"tl_short",$tabindex,specialchars($fieldValue[$i]));
+                            $return .=$this->createInputFieldAndLabel($this->strId,$key,$i,"",$tabindex,specialchars($fieldValue[$i]));
                     }
                     $return .= '</table><div class="ce_venoBox_btn_wrapper">';
 
@@ -242,7 +242,7 @@ class VenoBoxWizard extends \Widget
         $return="<tr>";
         $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale" title="'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][1].'"
 		>'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][0].'</label></td>';
-        $return .= '<td><select name="' . $this->strId . '[' . $key . '][' . $i . ']'.'" tabindex="'.$tabindex.$this->getAttributes().'" class="copybale tl_short">';
+        $return .= '<td><select name="' . $this->strId . '[' . $key . '][' . $i . ']'.'" tabindex="'.$tabindex.$this->getAttributes().'" class="copybale mySelect">';
         foreach ($GLOBALS['TL_CONFIG']['VenoBox']['types'] as $innerKey => $innerFieldValue) {
             $return .= "<option value='".$innerKey."'";
             if($innerKey==$value)

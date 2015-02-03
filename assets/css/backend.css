@@ -1,12 +1,5 @@
-/*.background_image { height:auto; min-height:72px; }*/
-/*.tl_short{width: 140px;}*/
-/*.tl_long{width: 460px;}*/
-/*.ce_venoBoxWizard .styled_select{line-height: 19px!important;}*/
-/*.ce_venoBoxWizard_wrapper span{display: inline-block;font-weight: bold;}*/
-/*.ce_venoBoxWizard select,.tl_ce_venoBoxWizard_wrapper span:first-child{margin-right: 5px;}*/
-/*.ce_venoBoxWizard_wrapper span:nth-child(2){margin-right: 10px;}*/
-/*.ce_venoBox_field_wrapper  {margin: 7px 0px 7px;}*/
 .ce_venoBox_field_wrapper th,.ce_venoBox_field_wrapper td {padding: 5px;border-collapse: collapse;}
-.ce_venoBox_field_wrapper>table{border: 1px solid #C0C0C0;border-collapse: collapse;
-.ce_venoBox_field_wrapper {background-color: #C0C0C0;}
-}
+.ce_venoBox_field_wrapper>table{background-color: #F5F5F5;}
+.ce_venoBox_field_wrapper .styled_select,.ce_venoBox_field_wrapper .mySelect{width: 200px;}
+.ce_venoBox_field_wrapper input{width: 200px;}
+
