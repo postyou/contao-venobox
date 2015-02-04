@@ -167,6 +167,8 @@ class VenoBoxWizard extends \Widget
         $return = "<div class='ce_venoBoxWizard_wrapper'>";
         $return .= '<ul id="ctrl_' . $this->strId . '" class="ce_venoBoxWizard" data-tabindex="' . $tabindex . '">';
         foreach ($this->varValue as $key => $fieldValue) {
+            var_dump($fieldValue);
+
             $return .= "<li><div class='ce_venoBox_field_wrapper'><table cellpadding=''>\n";
 
                     for ($i = 0; $i < $this->fieldNumber; $i++) {

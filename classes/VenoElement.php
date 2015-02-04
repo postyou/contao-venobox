@@ -18,9 +18,9 @@ class VenoElement{
     function __construct($initArray,$boxID,$galleryID,$class){
         $this->type=$initArray[0];
 //        $this->gallery=$initArray[1];
-        $this->href=$initArray[2];
-        $this->description=$initArray[3];
-        $this->text=$initArray[4];
+        $this->href=$initArray[1];
+        $this->description=$initArray[2];
+        $this->text=$initArray[3];
 
         if($this->type==0){
             //big Image Path
