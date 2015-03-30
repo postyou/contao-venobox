@@ -6,7 +6,7 @@ usage:
 
 "require": {
 
-        "postyou/venobox": "dev-master"
+        "postyou/venobox": "~1.0"
 },
 
 
