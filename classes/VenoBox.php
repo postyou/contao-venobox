@@ -38,13 +38,13 @@ class VenoBox extends \ContentElement
         if(isset($this->venoList)) {
             $this->Template->files = $this->venoList;
             $list=unserialize($this->venoList);
-
+            
             foreach($list as $key=>$elem){
                 $class="";
                 if($key==0)
-                    $class="first";
+                    $class.="first ";
                 if($key==count($list)-1)
-                    $class="last";
+                    $class.="last";
 
                 $vElem=new VenoElement($elem,$this->boxID,$this->galleryIndex,$class);
                $html.=$vElem->buildHtml()."\n";
