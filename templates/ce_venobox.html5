@@ -7,10 +7,12 @@
 <link rel="stylesheet" href="/system/modules/venobox/assets/venobox/venobox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="/system/modules/venobox/assets/venobox/venobox.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-        /* default settings */
-        $('.<?php echo  $this->boxClass?>').venobox();
-    });
+    (function($) {
+        $(document).ready(function() {
+            /* default settings */
+            $('.<?php echo  $this->boxClass?>').venobox();
+        });
+        })(jQuery);
 
 
 </script>
