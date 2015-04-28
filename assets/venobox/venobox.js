@@ -417,19 +417,35 @@
         }
     });
 
+    function getUrlParameter(url)
+    {
+        var results= new Object();
+        var sPageURL = url.split('?')[1];
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++)
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            results[sParameterName[0]]=sParameterName[1];
+        }
+        return results;
+    }
+
+
     /* -------- LOAD AJAX -------- */
     function loadAjax(){
-      $.ajax({
-      url: dest,
-      cache: false
-      }).done(function( msg ) {
-          content.html('<div class="vbox-inline">'+ msg +'</div>');
-          updateoverlay(true);
+        $.ajax({
+            url: dest,
+            data: getUrlParameter(dest),
+            method:"POST",
+            cache: false
+        }).done(function( msg ) {
+            content.html('<div class="vbox-inline">'+ msg +'</div>');
+            updateoverlay(true);
 
-      }).fail(function() {
-          content.html('<div class="vbox-inline"><p>Error retrieving contents, please retry</div>');
-          updateoverlay(true);
-      })
+        }).fail(function() {
+            content.html('<div class="vbox-inline"><p>Error retrieving contents, please retry</div>');
+            updateoverlay(true);
+        })
     }
 
     /* -------- LOAD IFRAME -------- */

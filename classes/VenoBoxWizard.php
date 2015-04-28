@@ -3,7 +3,7 @@ namespace postyou;
 
 class VenoBoxWizard extends \Widget
 {
-    private $fieldNumber = 4;
+    private $fieldNumber = 5;
     /**
      * Submit user input
      * @var boolean
@@ -171,15 +171,17 @@ class VenoBoxWizard extends \Widget
 
                     for ($i = 0; $i < $this->fieldNumber; $i++) {
                         if($i==0)
-                            $return .=$this->createDropdownMenuAndLabel($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
-                         else
-//                            if($i==1) {
-////                                $return .=$this->createCheckboxAndLabel($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
-////                                 $return .=$this->createFileBrowser($this->strId,$key,$i,$tabindex,$fieldValue[$i]);
-//                            }else
-                            $return .=$this->createInputFieldAndLabel($this->strId,$key,$i,"",$tabindex,specialchars($fieldValue[$i]));
+                            $return .=$this->createDropdownMenuAndLabel($key,$i,$tabindex,$fieldValue[$i]);
+//                         elseif($i==1)
+//                             $return .=$this->createInputFieldAndLabel($key,$i,"",$tabindex,specialchars($fieldValue[$i]),array(1,2));
+//                         elseif($i==4)
+//                             $return .=$this->createInputFieldAndLabel($key,$i,"",$tabindex,specialchars($fieldValue[$i]),array(3));
+                        else
+                            $return .=$this->createInputFieldAndLabel($key,$i,"",$tabindex,specialchars($fieldValue[$i]));
+
                     }
                     $return .= '</table><div class="ce_venoBox_btn_wrapper">';
+
 
                 // Add buttons
                 foreach ($arrButtons as $button) {
@@ -216,17 +218,32 @@ class VenoBoxWizard extends \Widget
         return $arrBuffer;
     }
 
-    function createInputFieldAndLabel($strID,$key,$i,$classes,$tabindex,$value){
+    function createInputFieldAndLabel($key,$i,$classes,$tabindex,$value,$wizard=array()){
+        $name=$this->strId . '[' . $key . '][' . $i . ']';
         $return="<tr>";
-        $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale" class="copybale" title="'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][1].'"
+        $return.='<td><label for="' .$name. '" class="copybale" class="copybale" title="'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][1].'"
         >'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][0].'</label></td>';
-        $return .= '<td><input type="text" name="'. $this->strId . '[' . $key . '][' . $i . ']' . '" class="copybale '.$classes.'"';
-        $return .= 'tabindex="' . $tabindex . '" value="'.$value.'"' .  $this->getAttributes()  . '/></td>';
+        $return .= '<td><input ';
+        $return .= 'type="text" ';
+        $return .= 'id="ctrl_'.$name.'" ';
+        $return .= 'name="'. $name. '" class="copybale '.$classes.'"';
+        $return .= 'tabindex="' . $tabindex . '" value="'.$value.'"' .  $this->getAttributes()  . '/>';
+        if(!empty($wizard)) {
+            if(!is_array($wizard))
+                $wizard=array($wizard);
+            if(in_array(1,$wizard))
+                $return .= $this->createPageWizard($key, $i, $value);
+            if(in_array(2,$wizard))
+                $return .= $this->createImageFileWizard($key, $i, $value);
+            if(in_array(3,$wizard))
+                $return .= $this->createColorPicker($key, $i, $value);
+        }
+        $return.= '</td>';
 
         $return.="</tr>";
         return $return;
     }
-    function createCheckboxAndLabel($strID,$key,$i,$tabindex,$value){
+    function createCheckboxAndLabel($key,$i,$tabindex,$value){
         $return="<tr>";
         $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale" class="copybale" title="'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][1].'"
         >'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][0].'</label></td>';
@@ -238,7 +255,7 @@ class VenoBoxWizard extends \Widget
         $return.="</tr>";
         return $return;
     }
-    function createDropdownMenuAndLabel($strID,$key,$i,$tabindex,$value){
+    function createDropdownMenuAndLabel($key,$i,$tabindex,$value){
         $return="<tr>";
         $return.='<td><label for="' .$this->strId . '[' . $key . '][' . $i . ']'. '" class="copybale" title="'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][1].'"
 		>'.$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn'.$i][0].'</label></td>';
@@ -253,12 +270,56 @@ class VenoBoxWizard extends \Widget
         return $return;
     }
 
-    function createFileBrowser($strID,$key,$i,$tabindex,$value){
-        $label="FileTree";
+    function createPageWizard($key,$i,$value){
+        $label="PageTree";
         $name=$this->strId . '[' . $key . '][' . $i . ']';
-        $config=array("id"=>$key.$i,"label"=>$label,"name"=>$name,"value"=>$value,"tabindex"=>$tabindex);
-        $ft= new \FileTree($config);
-        return $ft->generate();
+
+        return ' <a href="contao/page.php?do=' . \Input::get('do') . '&amp;table=' . \Input::get('table') . '&amp;field=' . $name . '&amp;value=" title="' . specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']) . '"
+         onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':768,\'title\':\'' . specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])) . '\',\'url\':this.href,\'id\':\'' . $name . '\',\'tag\':\'ctrl_'. $name . '\',\'self\':this});return false">' .
+        \Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
     }
+    function createImageFileWizard($key,$i,$value){
+        $label="ImageFileTree";
+        $name=$this->strId . '[' . $key . '][' . $i . ']';
+
+//        $this->loadDataContainer('tl_content');
+//        $GLOBALS['TL_DCA']['tl_content']['fields'][$name]['eval']=array(
+//            'filesOnly'=>true, 'extensions'=>\Config::get('validImageTypes'), 'fieldType'=>'radio', 'tl_class'=>'w50 wizard'
+//        );
+
+        return ' <a href="contao/file.php?do='.\Input::get('do').'&amp;table='.\Input::get('table').'&amp;field='.$name.'&amp;filter=jpg&amp;value="
+         title="'.specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MSC']['filepicker'])).'"
+          onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':768,\'title\':\''.specialchars($GLOBALS['TL_LANG']['MOD']['files'][0]).'\',\'url\':this.href,\'id\':\''.$name.'\',\'tag\':\'ctrl_'.$name.'\',\'self\':this});return false">' .
+        \Image::getHtml('pickfile.gif', $GLOBALS['TL_LANG']['MSC']['filepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
+
+    }
+    function createColorPicker($key,$i,$value)
+    {
+        $label = "ImageFileTree";
+        $name = $this->strId . '[' . $key . '][' . $i . ']';
+        $fieldName = "ctrl_" . $name;
+
+        $return = "";
+
+        $return .= '<img src="system/themes/flexible/images/pickcolor.gif" alt="Farbe auswählen" style="vertical-align:top;cursor:pointer" title="" id="moo_' . $name . '" height="21" width="15">';
+
+        $return .= '<script>
+        window.addEvent("domready", function() {
+            new MooRainbow("moo_' . $name . '", {
+                id: "' . $fieldName . '",
+        startColor: ((cl = $("' . $fieldName . '").value.hexToRgb(true)) ? cl : [255, 0, 0]),
+        imgPath: "assets/mootools/colorpicker/1.4/images/",
+        onComplete: function(color) {
+                    $("' . $fieldName . '").value = color.hex.replace("#", "");
+                }
+      });
+    });
+
+        </script>';
+
+    return $return;
+}
+
+
 
 }

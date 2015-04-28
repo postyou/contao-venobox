@@ -22,6 +22,3 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
     'sql'                     => "blob NULL"
 
 );
-
-
-

@@ -336,3 +336,11 @@ body{
     overflow: hidden;
     z-index: 1;
 }
+
+
+/*----------------------Changes from Garyee -----------------------------*/
+.vbox-inline {
+    width: auto;
+    min-width: 420px;
+    min-height: 315px;
+}
