@@ -36,8 +36,8 @@ class VenoElement{
             if ($objFileSmall !== null && is_file(TL_ROOT . '/' . $objFileSmall->path)) {
                 $this->text="<img src='".$objFileSmall->path."'/>";
             }
-
         }
+
         $this->linkCssClass=$class;
 
         $this->boxID=$boxID;
@@ -48,8 +48,12 @@ class VenoElement{
     function buildHtml(){
         $outputType=$this->type;
         if($this->type==6) {
-            $this->href = "/system/modules/page2ajax/assets/ajax.php?" . $this->href;
-            $outputType=3;
+            if(class_exists("PageAjax")) {
+                $this->href = \PageAjax::getAjaxURL()."?" . $this->href;
+                $outputType = 3;
+            }
+            else
+                return "<p>install <a href=\"https://github.com/garyee/contao-page2ajax/\">page2ajax-extension</a> for this to work<p>";
         }
         $str="";
         $str.="<a class='venobox_".$this->boxID." ".$this->linkCssClass."'";
