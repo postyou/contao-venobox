@@ -7,7 +7,7 @@ if (TL_MODE == 'BE')
     $GLOBALS['TL_CSS'][] = 'system/modules/venobox/assets/css/backend.css|screen';
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['VenoBox'] =
-    '{type_legend},type,headline;{venobox_list_legend},venoList;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
+    '{type_legend},type,headline,headlineOptn;{venobox_list_legend},venoList;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
 (
@@ -15,10 +15,5 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
     'exclude'                 => true,
     'inputType'               => 'venoBoxWizard',
     'eval'                    => array('tl_class' => 'clr'),
-//        'save_callback' => array
-//        (
-//            array('my_tl_settings', 'saveList')
-//        ),
     'sql'                     => "blob NULL"
-
 );
