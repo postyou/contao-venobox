@@ -62,9 +62,9 @@ class VenoElement{
                 return "<p>install <a href=\"https://github.com/garyee/contao-page2ajax/\">page2ajax-extension</a> for this to work<p>";
         }
         $str="";
-        $str.="<a class='venobox_".$this->boxID." ".$this->linkCssClass."'";
+        $str.="<a class='venobox_".$this->boxID." ".$this->linkCssClass."' ";
         if ($this->type!=0)
-            $str.=" data-type='".$GLOBALS['TL_CONFIG']['VenoBox']['types'][$outputType]."'";
+            $str.="data-type='".$GLOBALS['TL_CONFIG']['VenoBox']['types'][$outputType]."' ";
         $str.=" href='".$this->href;
         if($this->type==3 || $this->type==6) {
             if (strpos($this->href, "?")===false) {
@@ -74,11 +74,11 @@ class VenoElement{
             }
             $str .= "REQUEST_TOKEN=" . REQUEST_TOKEN;
         }
-        $str.="'";
+        $str.="' ";
         if($this->gallery)
-            $str.=" data-gall='venoGallery_".$this->boxID."_".$this->galleryID."'";
+            $str.="data-gall='venoGallery_".$this->boxID."_".$this->galleryID."' ";
         if(!empty($this->overlayCssClass))
-            $str.=" data-css='".$this->overlayCssClass."'";
+            $str.="data-css='".$this->overlayCssClass."' ";
         if(!empty($this->overlayColor))
             $str.="data-overlay='".$this->overlayColor."' ";
         if(isset($this->description) && !empty($this->description))

@@ -41,6 +41,14 @@ class VenoBoxWizard extends \Widget
 
     public function generate()
     {
+        $single=false;
+        switch($this->objDca->activeRecord->type){
+            case "image":
+                $single=true;
+                break;
+        }
+
+
         echo "<script>
     /**
      * List wizard
@@ -120,7 +128,11 @@ class VenoBoxWizard extends \Widget
         });
     }
 </script>";
+
+
  $arrButtons = array('copy', 'drag', 'up', 'down', 'delete');
+        if($single)
+            $arrButtons=array();
 //        $arrButtons = array('copy', 'delete');
         $strCommand = 'cmd_' . $this->strField;
 // Change the order
