@@ -29,6 +29,7 @@ class ContentVenoLinkImage extends ContentImage
             $this->Template->linkTitle = $config[1];
             $this->Template->attributes = $config[2];
             $this->Template->boxClass = "venobox_" . $this->boxID;
+            $this->Template->venobox=true;
         }
     }
 
