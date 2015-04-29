@@ -15,3 +15,11 @@ $GLOBALS['TL_LANG']['tl_content']['venoBoxColumn4'][] = 'Html Farbstring zum fes
 $GLOBALS['TL_LANG']['tl_content']['listitems'][0]="Venobox Gallerie-Objekte";
 $GLOBALS['TL_LANG']['tl_content']['listitems'][1]="Wählen sie den Typen und geben sie die Details ein";
 $GLOBALS['TL_LANG']['tl_content']['venobox_list_legend']="VenoBox Liste";
+
+$GLOBALS['TL_LANG']['tl_content']['fullsize'][0]="Bild-Verlinkung";
+$GLOBALS['TL_LANG']['tl_content']['fullsize'][1]="Das Bild kann als Link zur einer Url oder Venobox führen";
+
+
+$GLOBALS['TL_LANG']['tl_content']['0'][0]="Link-Url";
+$GLOBALS['TL_LANG']['tl_content']['1'][0]="VenoBox";
+

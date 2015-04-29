@@ -1,0 +1,10 @@
+
+.vbox-inline {
+    width: auto!important;
+    min-width: 420px!important;
+    min-height: 315px!important;
+}
+
+.veno_ajax .vbox-inline,.veno_page2ajax .vbox-inline{
+    height: auto;
+}

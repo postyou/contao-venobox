@@ -3,25 +3,11 @@
 
 <?php $this->extend('block_searchable'); ?>
 <?php $this->block('content'); ?>
-
-<link rel="stylesheet" href="/system/modules/venobox/assets/venobox/venobox.css" type="text/css" media="screen" />
-<script type="text/javascript" src="/system/modules/venobox/assets/venobox/venobox.js"></script>
 <script type="text/javascript">
     (function($) {
         $(document).ready(function() {
             /* default settings */
-            $('.<?php echo  $this->boxClass?>').venobox({
-//                framewidth: '400px',        // default: ''
-//                frameheight: '300px',       // default: ''
-//                border: '10px',             // default: '0'
-                <?if(isset($this->bgcolor))
-                    echo("bgcolor: '".$this->bgcolor."'");
-                ?>
-//                bgcolor: '#5dff5e',         // default: '#fff'
-//                titleattr: 'data-title',    // default: 'title'
-//                numeratio: true,            // default: false
-//                infinigall: true            // default: false
-            });
+            $('.<?php echo  $this->boxClass?>').venobox();
         });
         })(jQuery);
 

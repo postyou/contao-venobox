@@ -33,10 +33,17 @@ class VenoBox extends \ContentElement
     protected function compile()
     {
         $this->boxID = uniqid('');
+
+
+        $this->Template->html = $this->getVenoElemsHtml($this->venoList,$this->boxID,$this->galleryIndex);
+        $this->Template->boxClass = "venobox_" . $this->boxID;
+
+    }
+
+    private function getVenoElemsHtml($vlist=null,$boxId,$galleryIndex){
         $html = "";
-        if (isset($this->venoList)) {
-            $this->Template->files = $this->venoList;
-            $list = unserialize($this->venoList);
+        if (isset($vlist)) {
+            $list = unserialize($vlist);
 
             foreach ($list as $key => $elem) {
                 $linkCssClass = "";
@@ -46,44 +53,13 @@ class VenoBox extends \ContentElement
                 if ($key == count($list) - 1) {
                     $linkCssClass .= "last";
                 }
-
-                if (preg_match("/\{\{(([^\{\}])*)\}\}/", $elem[1])) {
-                    $elem[1]=$this->replaceInsterTagsAjax($elem[1],$elem[0]);
-                }
-
-                $vElem = new VenoElement($elem, $this->boxID, $this->galleryIndex, $linkCssClass);
+                $vElem = new VenoElement($elem, $boxId, $galleryIndex, $linkCssClass);
                 $html .= $vElem->buildHtml() . "\n";
             }
         }
-        $this->Template->html = $html;
-        $this->Template->bgcolor = $this->$elem[4];
-        $this->Template->boxClass = "venobox_" . $this->boxID;
-
+        return $html;
 
     }
-
-
-    private function replaceInsterTagsAjax($value,$type)
-    {
-        if (strpos($value, '{{') !== false) {
-            $url=substr($value,0,strpos($value,"{{"));
-            $tagTyp=substr($value,2,strpos($value,"::")-2);
-            if($type==6)
-                switch($tagTyp) {
-                    case"link_url":
-                        $url="action=page&g=1&id=";
-                        break;
-                    case"article":
-                        $url="action=art&g=1&id=";
-                        break;
-                    default:
-                        return "Insert_Tag_Could_Not_Be_Converted";
-                }
-            return $url. str_replace(array('{{'.$tagTyp.'::', '}}'), '', $value);
-        }
-        return "NO_Insert_Tag_FOUND";
-    }
-
 
 }
 
