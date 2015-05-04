@@ -12,8 +12,8 @@ $GLOBALS['TL_LANG']['tl_content']['venoBoxColumn3'][] = 'Der Text der verlinkt w
 //$GLOBALS['TL_LANG']['tl_content']['venoBoxColumn4'][] = 'Css Klasse für das Overlay';
 $GLOBALS['TL_LANG']['tl_content']['venoBoxColumn4'][] = 'Hintergrundfarbe';
 $GLOBALS['TL_LANG']['tl_content']['venoBoxColumn4'][] = 'Html Farbstring zum festlegen der Overlayfarbe';
-$GLOBALS['TL_LANG']['tl_content']['listitems'][0]="Venobox Gallerie-Objekte";
-$GLOBALS['TL_LANG']['tl_content']['listitems'][1]="Wählen sie den Typen und geben sie die Details ein";
+$GLOBALS['TL_LANG']['tl_content']['venoList'][0]="Venobox Gallerie-Objekte";
+$GLOBALS['TL_LANG']['tl_content']['venoList'][1]="Wählen sie den Typen und geben sie die Details ein";
 $GLOBALS['TL_LANG']['tl_content']['venobox_list_legend']="VenoBox Liste";
 
 $GLOBALS['TL_LANG']['tl_content']['fullsize'][0]="Bild-Verlinkung";
