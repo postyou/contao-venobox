@@ -9,7 +9,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['VenoBox'] =
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['listitems'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['venoList'],
     'exclude'                 => true,
     'inputType'               => 'venoBoxWizard',
     'eval'                    => array('tl_class' => 'clr'),
