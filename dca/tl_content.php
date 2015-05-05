@@ -18,9 +18,9 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['fullsize']['default'] = 0;
 $GLOBALS['TL_DCA']['tl_content']['fields']['fullsize']['inputType'] = 'radio';
-$GLOBALS['TL_DCA']['tl_content']['fields']['fullsize']['options'] = array(0,1);
+$GLOBALS['TL_DCA']['tl_content']['fields']['fullsize']['options'] = array(0,1,2);
 $GLOBALS['TL_DCA']['tl_content']['fields']['fullsize']['reference'] = &$GLOBALS['TL_LANG']['tl_content'];
-$GLOBALS['TL_DCA']['tl_content']['fields']['fullsize']['eval'] = array('submitOnChange'=>true,'mandatory'=>true,'tl_class'=>'clr');
+$GLOBALS['TL_DCA']['tl_content']['fields']['fullsize']['eval'] = array('submitOnChange'=>true,'tl_class'=>'clr');
 
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['image']=str_replace(',imageUrl,fullsize','', $GLOBALS['TL_DCA']['tl_content']['palettes']['image']);
@@ -29,8 +29,9 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['image']=str_replace('{template_leg
 // add Selector
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'fullsize';
 
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_0'] = 'imageUrl';
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_1'] = 'venoList';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_0'] = 'none';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_1'] = 'imageUrl';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_2'] = 'venoList';
 
 
 $GLOBALS['TL_CTE']['media']['image'] = 'ContentVenoLinkImage';
