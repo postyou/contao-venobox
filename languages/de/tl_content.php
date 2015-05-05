@@ -22,6 +22,7 @@ $GLOBALS['TL_LANG']['tl_content']['fullsize'][1]="Das Bild kann als Link zur ein
 $GLOBALS['TL_LANG']['tl_content']['veno_legend']="Bild verlinken";
 
 
-$GLOBALS['TL_LANG']['tl_content']['0'][0]="Link-Url";
-$GLOBALS['TL_LANG']['tl_content']['1'][0]="VenoBox";
+$GLOBALS['TL_LANG']['tl_content']['0'][0]="Keine";
+$GLOBALS['TL_LANG']['tl_content']['1'][0]="Link-Url";
+$GLOBALS['TL_LANG']['tl_content']['2'][0]="VenoBox";
 
