@@ -16,7 +16,7 @@ if(TL_MODE == 'BE') {
 }
 
 if(TL_MODE == 'FE') {
-    $GLOBALS['TL_JAVASCRIPT']['jquery'] = 'assets/jquery/core/' . reset((scandir(TL_ROOT . '/assets/jquery/core', 1))) . '/jquery.js';
+    //$GLOBALS['TL_JAVASCRIPT']['jquery'] = 'assets/jquery/core/' . reset((scandir(TL_ROOT . '/assets/jquery/core', 1))) . '/jquery.js';
     $GLOBALS['TL_CSS'][] = "/system/modules/venobox/assets/venobox/venobox.css";
     $GLOBALS['TL_JAVASCRIPT'][] = "/system/modules/venobox/assets/venobox/venobox.js";
     $GLOBALS['TL_CSS'][] = 'system/modules/venobox/assets/css/frontend.css';
