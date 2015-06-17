@@ -17,7 +17,7 @@ class VenoElement{
     private $boxID;
     private $galleryID=0;
 
-    function __construct($initArray,$boxID,$galleryID,$class=""){
+    function __construct($initArray=array(),$boxID="",$galleryID=1,$class=""){
 //        var_dump($initArray);
         $this->type=$initArray[0];
 //        $this->gallery=$initArray[1];
@@ -51,7 +51,7 @@ class VenoElement{
         $this->replaceInsterTagsAjax();
     }
 
-    function buildHtml(){
+    function buildHtml($justOpenTag=false){
         $outputType=$this->type;
         if($this->type==6) {
             if(class_exists("PageAjax")) {
@@ -83,7 +83,9 @@ class VenoElement{
             $str.="data-overlay='".$this->overlayColor."' ";
         if(isset($this->description) && !empty($this->description))
             $str.=" title='".$this->description."'";
-        $str.=">".$this->text."</a>";
+        $str.=">";
+        if(!$justOpenTag)
+            $str.=$this->text."</a>";
 
         return $str;
     }
@@ -150,6 +152,7 @@ class VenoElement{
             }
         }
     }
+
 
 
 

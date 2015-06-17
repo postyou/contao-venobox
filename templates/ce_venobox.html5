@@ -3,21 +3,10 @@
 
 <?php $this->extend('block_searchable'); ?>
 <?php $this->block('content'); ?>
-<script type="text/javascript">
-    (function($) {
-        $(document).ready(function() {
-            /* default settings */
-            $('.<?php echo  $this->boxClass?>').venobox();
-        });
-        })(jQuery);
-
-
-</script>
-
+<?php if(isset($this->js)){echo($this->js);} ?>
 
 <?php
     echo($this->html);
-
 ?>
 
 <?php $this->endblock(); ?>

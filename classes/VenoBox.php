@@ -32,11 +32,12 @@ class VenoBox extends \ContentElement
      */
     protected function compile()
     {
-        $this->boxID = uniqid('');
+        $this->boxID = VenoHelper::getVenoBoxID();
 
 
         $this->Template->html = $this->getVenoElemsHtml($this->venoList,$this->boxID,$this->galleryIndex);
-        $this->Template->boxClass = "venobox_" . $this->boxID;
+        $this->Template->boxClass = VenoHelper::getVenoBoxClass($this->boxID);
+        $this->Template->js=$this->getJs($this->boxID);
 
     }
 
@@ -61,6 +62,18 @@ class VenoBox extends \ContentElement
 
     }
 
+    public static function getJs($boxID){
+        return "<script type=\"text/javascript\">
+        (function($) {
+            $(document).ready(function() {
+                /* default settings */
+                $('.venobox_".$boxID."').venobox();
+            });
+        })(jQuery);
+</script>";
+    }
+
 }
+
 
 ?>

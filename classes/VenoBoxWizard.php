@@ -43,6 +43,9 @@ class VenoBoxWizard extends \Widget
     {
         $single=false;
         switch($this->objDca->activeRecord->type){
+            case "text":
+                $single=true;
+                break;
             case "image":
                 $single=true;
                 break;
