@@ -146,6 +146,7 @@ class VenoElement{
                             $url="action=art&g=1&id=";
                             break;
                         default:
+                            $this->href=preg_replace("/\{\{(([^\{\}])*)\}\}/","",$this->href);
                             return "Insert_Tag_Could_Not_Be_Converted";
                     }
                 $this->href= $url. str_replace(array('{{'.$tagTyp.'::', '}}'), '', $this->href);
