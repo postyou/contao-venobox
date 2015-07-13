@@ -99,7 +99,7 @@ class VenoElement{
                 $outputType = 3;
             }
             else
-                return array("<p>install <a href=\"https://github.com/garyee/contao-page2ajax/\">page2ajax-extension</a> for this to work<p>");
+                return array("0"=>"#","2"=>"title='install page2ajax-extension for this to work'");
         }
         $att="";
         $href="";
