@@ -44,8 +44,8 @@ class VenoHelper {
     }
     
     public static function loadVenoScripts(){
-        $GLOBALS['TL_CSS'][] = "/system/modules/venobox/assets/venobox/venobox.css";
-        $GLOBALS['TL_JAVASCRIPT'][] = "/system/modules/venobox/assets/venobox/venobox.js";
+        $GLOBALS['TL_CSS'][] = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.css";
+        $GLOBALS['TL_JAVASCRIPT'][] = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.js";
         $GLOBALS['TL_CSS'][] = 'system/modules/venobox/assets/css/frontend.css';
     }
 
