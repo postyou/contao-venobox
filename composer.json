@@ -33,11 +33,19 @@
         "nicolafranchini/venobox": "dev-master"
     },
     "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/garyee/VenoBox"
+    {
+        "type":"package",
+        "package": {
+            "name": "nicolafranchini/venobox",
+            "version": "master",
+            "source": {
+                "url": "https://github.com/garyee/VenoBox",
+                "type": "git",
+                "reference":"master"
+            }
         }
-    ],
+    }
+]
     "extra": {
         "contao": {
             "sources": {
