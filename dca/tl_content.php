@@ -2,6 +2,10 @@
     die('You cannot access this file directly!');
 }
 
+$GLOBALS['TL_CSS'][] = 'system/modules/venobox/assets/css/backend.css';
+$GLOBALS['TL_JAVASCRIPT'][] = 'assets/mootools/colorpicker/' . $GLOBALS['TL_ASSETS']['COLORPICKER'] . '/js/mooRainbow.js';
+$GLOBALS['TL_CSS'][] = 'assets/mootools/colorpicker/' . $GLOBALS['TL_ASSETS']['COLORPICKER'] . '/css/mooRainbow.css';
+
 
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['VenoBox'] =

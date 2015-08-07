@@ -22,7 +22,7 @@ class ContentVenoLinkImage extends ContentImage
         parent::compile();
         $this->boxID = uniqid('');
         if (isset($this->venoList) && !empty($this->venoList)) {
-
+            VenoHelper::loadVenoScripts();
             $config = $this->getArrtibutes($this->venoList);
 //            var_dump($config);
             $this->Template->href = $config[0];

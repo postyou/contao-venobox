@@ -25,6 +25,7 @@ class VenoHelper {
 
         if(isset($objElement->type) && $objElement->type=="text")
             if($objElement->fullsize=2 && isset($objElement->venoList) && !empty($objElement->venoList)) {
+                self::loadVenoScripts();
                 $strBuffer=substr_replace($strBuffer, VenoBox::getJs($boxId) . "</div>", strpos($strBuffer, "</div>") - 1);
                 $a_start=strpos($strBuffer,"<a href");
                 $a_end=strpos($strBuffer,">",$a_start)+1;
@@ -40,6 +41,12 @@ class VenoHelper {
     }
     public static function getVenoBoxClass($boxid){
         return "venobox_" . $boxid;
+    }
+    
+    public static function loadVenoScripts(){
+        $GLOBALS['TL_CSS'][] = "/system/modules/venobox/assets/venobox/venobox.css";
+        $GLOBALS['TL_JAVASCRIPT'][] = "/system/modules/venobox/assets/venobox/venobox.js";
+        $GLOBALS['TL_CSS'][] = 'system/modules/venobox/assets/css/frontend.css';
     }
 
 }

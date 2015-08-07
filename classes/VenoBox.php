@@ -10,6 +10,11 @@ class VenoBox extends \ContentElement
     private $boxID;
     private $galleryIndex = 1;
 
+    public function __construct($objElement, $strColumn='main'){
+        parent::__construct($objElement);
+        VenoHelper::loadVenoScripts();
+    }
+    
     public function generate()
     {
 

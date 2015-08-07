@@ -24,6 +24,7 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
+	'postyou\VenoHelper'           => 'system/modules/venobox/classes/VenoHelper.php',
 	'postyou\ContentVenoLinkImage' => 'system/modules/venobox/classes/ContentVenoLinkImage.php',
 	'postyou\VenoElement'          => 'system/modules/venobox/classes/VenoElement.php',
 	'postyou\VenoBoxWizard'        => 'system/modules/venobox/classes/VenoBoxWizard.php',
