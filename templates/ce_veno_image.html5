@@ -14,13 +14,12 @@
     </a>
     <?php if(isset($this->venobox)): ?>
     <script type="text/javascript">
-        (function($) {
-            $(document).ready(function() {
-                $(".<?php echo  $this->boxClass?>").venobox();
-            });
-        })(jQuery);
-
-
+        $(document).ready(function() {
+            var venoOptions={}
+            if(typeof end_done  != 'undefined' && $.isFunction(end_done))
+                venoOptions["callback"]=end_done
+            $(".<?php echo  $this->boxClass?>").venobox(venoOptions);
+        });
     </script>
 <?php endif; ?>
 <?php endif; ?>

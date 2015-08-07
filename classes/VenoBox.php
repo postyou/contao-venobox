@@ -67,15 +67,14 @@ class VenoBox extends \ContentElement
 
     }
 
-    public static function getJs($boxID){
+     public static function getJs($boxID){
         return "<script type=\"text/javascript\">
-        (function($) {
-            $(document).ready(function() {
-                /* default settings */
-                $('.venobox_".$boxID."').venobox();
-            });
-        })(jQuery);
-</script>";
+        $(document).ready(function() {
+            var venoOptions={}
+            if(typeof end_done  != 'undefined' && $.isFunction(end_done))
+                venoOptions['callback']=end_done".
+            "$('.".$boxID."').venobox(venoOptions);".
+            "});</script>";
     }
 
 }
