@@ -29,9 +29,15 @@
     "require": {
         "php": ">=5.3.2",
         "contao/core": ">=3.2,<4.0",
-        "contao-community-alliance/composer-plugin": "~2.0"
-
+        "contao-community-alliance/composer-plugin": "~2.0",
+        "nicolafranchini/venobox": "dev-master"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/garyee/VenoBox"
+        }
+    ],
     "extra": {
         "contao": {
             "sources": {
