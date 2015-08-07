@@ -45,7 +45,7 @@
             }
         }
     }
-]
+],
     "extra": {
         "contao": {
             "sources": {
