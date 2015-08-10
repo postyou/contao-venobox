@@ -6,7 +6,7 @@ usage:
 
 "require": {
 
-        "postyou/venobox": "~1.0"
+        "postyou/venobox": "~2.0"
 },
 
 
@@ -16,7 +16,13 @@ usage:
         
             "type": "vcs",
             "url": "https://github.com/garyee/contao-venobox"
+        },
+        {
+        
+            "type": "vcs",
+            "url": "https://github.com/garyee/VenoBox"
         }
+        
 ],
    
 Usage with page2ajax: (display contentElements, Articles or Pages in a VenoBox but not as an IFrame)
