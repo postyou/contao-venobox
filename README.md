@@ -6,7 +6,7 @@ usage:
 
 "require": {
 
-        "postyou/venobox": "~2.0"
+        "postyou/venobox": "~1.0"
 },
 
 
