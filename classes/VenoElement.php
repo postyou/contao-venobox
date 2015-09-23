@@ -70,9 +70,9 @@ class VenoElement{
             if (strpos($this->href, "?")===false) {
                 $str .= "?";
             } else {
-                $str .= "&";
+                $str .= "&amp;";
             }
-            $str .= "REQUEST_TOKEN=" . REQUEST_TOKEN;
+            $str .= "rt=" . REQUEST_TOKEN;
         }
         $str.="' ";
         if($this->gallery)
