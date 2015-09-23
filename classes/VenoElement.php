@@ -112,9 +112,9 @@ class VenoElement{
             if (strpos($this->href, "?")===false) {
                 $href.= "?";
             } else {
-                $href.= "&";
+                $href.= "&amp;";
             }
-            $href.= "REQUEST_TOKEN=" . REQUEST_TOKEN;
+            $href.= "rt=" . REQUEST_TOKEN;
         }
         if($this->gallery)
             $att.="data-gall='venoGallery_".$this->galleryID."' ";
@@ -140,10 +140,10 @@ class VenoElement{
                 if($this->type==6)
                     switch($tagTyp) {
                         case"link_url":
-                            $url="action=page&g=1&id=";
+                            $url="action=page&amp;g=1&amp;id=";
                             break;
                         case"article":
-                            $url="action=art&g=1&id=";
+                            $url="action=art&amp;g=1&amp;id=";
                             break;
                         default:
                             $this->href=preg_replace("/\{\{(([^\{\}])*)\}\}/","",$this->href);
