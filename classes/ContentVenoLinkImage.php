@@ -14,11 +14,15 @@ use Contao\ContentImage;
 class ContentVenoLinkImage extends ContentImage
 {
 
-    protected $strTemplate = 'ce_veno_image';
+    protected $strTemplate = 'ce_veno_image_3.4';
     protected $boxID;
 
     protected function compile()
     {
+        if (version_compare(VERSION, '3.50', '>='))
+		{
+			$this->strTemplate='ce_veno_image_3.5';
+		}
         parent::compile();
         $this->boxID = uniqid('');
         if (isset($this->venoList) && !empty($this->venoList)) {
