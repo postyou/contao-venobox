@@ -37,6 +37,7 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
+	'ce_veno_image_3.5' => 'system/modules/venobox/templates',
+	'ce_veno_image_3.4' => 'system/modules/venobox/templates',
 	'ce_venobox'    => 'system/modules/venobox/templates',
-	'ce_veno_image' => 'system/modules/venobox/templates',
 ));
