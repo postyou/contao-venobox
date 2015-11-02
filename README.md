@@ -15,12 +15,12 @@ usage:
         {
         
             "type": "vcs",
-            "url": "https://github.com/garyee/contao-venobox"
+            "url": "https://github.com/postyou/contao-venobox"
         },
         {
         
             "type": "vcs",
-            "url": "https://github.com/garyee/VenoBox"
+            "url": "https://github.com/postyou/VenoBox"
         }
         
 ],
@@ -36,6 +36,6 @@ To manually Link to an Element do:
 
 1. choose ajax in Venobox settings
 2. as URL take  /system/modules/page2ajax/assets/ajax.php
-3. Add parameters as explained in the [readme](https://github.com/garyee/contao-page2ajax/blob/master/README.md) of page2ajax
+3. Add parameters as explained in the [readme](https://github.com/postyou/contao-page2ajax/blob/master/README.md) of page2ajax
 
 Url-field for example: /system/modules/page2ajax/assets/ajax.php?g=1&id=64&action=art (to load article with id 64)
