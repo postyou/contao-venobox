@@ -81,8 +81,8 @@ class VenoBox extends \ContentElement
         return "<script type=\"text/javascript\">
         $(document).ready(function() {
             var venoOptions={}
-            if(typeof end_done  != 'undefined' && $.isFunction(end_done))
-                venoOptions['callback']=end_done; ".
+            if(typeof venobox_post_open_callback  != 'undefined' && $.isFunction(venobox_post_open_callback))
+                venoOptions[\"post_open_callback\"]=venobox_post_open_callback;".
             "$('.".$boxClass."').venobox(venoOptions);".
             "});</script>";
     }
