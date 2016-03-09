@@ -39,3 +39,8 @@ To manually Link to an Element do:
 3. Add parameters as explained in the [readme](https://github.com/postyou/contao-page2ajax/blob/master/README.md) of page2ajax
 
 Url-field for example: /system/modules/page2ajax/assets/ajax.php?g=1&id=64&action=art (to load article with id 64)
+
+AutoOpen Venobox:
+
+add Parameter to URL `venoboxOpen=uniqueIDofTheBox`
+(get the ID of the specific box form the backend Page)

@@ -15,6 +15,7 @@ namespace postyou;
 
 
 use Contao\ContentImage;
+use Contao\Input;
 
 class ContentVenoLinkImage extends ContentImage
 {
@@ -24,30 +25,29 @@ class ContentVenoLinkImage extends ContentImage
 
     protected function compile()
     {
-        if (version_compare(VERSION, '3.50', '>='))
-		{
-			$this->strTemplate='ce_veno_image_3.5';
-		}
+        if (version_compare(VERSION, '3.50', '>=')) {
+            $this->strTemplate='ce_veno_image_3.5';
+        }
         parent::compile();
         $this->boxID = uniqid('');
         if (isset($this->venoList) && !empty($this->venoList)) {
+
+            $venoProperties=unserialize($this->venoList);
+            $this->boxID = $venoProperties[0][5];
             VenoHelper::loadVenoScripts();
-            $config = $this->getArrtibutes($this->venoList);
-//            var_dump($config);
+            $config = $this->getArrtibutes($venoProperties);
             $this->Template->href = $config[0];
             $this->Template->linkTitle = $config[1];
             $this->Template->attributes = $config[2];
-            $this->Template->boxClass = "venobox_" . $this->boxID;
             $this->Template->venobox=true;
+            $this->Template->jsScript=VenoBox::getJs($venoProperties, Input::get("venoboxOpen"));
         }
     }
 
 
     private function getArrtibutes($vList)
     {
-
-
-        $elem = new VenoElement(unserialize($this->venoList)[0],$this->boxID,1);
+        $elem = new VenoElement($vList[0], 1);
         return $elem->buildHtmlArrtibutes();
     }
 

@@ -5,7 +5,14 @@ $GLOBALS['TL_CTE']['media']['VenoBox'] = 'VenoBox';
 
 $GLOBALS['BE_FFL']['venoBoxWizard'] = 'VenoBoxWizard';
 
-$GLOBALS['TL_CONFIG']['VenoBox']['types']=array("image","iframe","inline","ajax","youtube","vimeo","page2ajax") ;
+$GLOBALS['TL_CONFIG']['VenoBox']['types'][0]="image";
+$GLOBALS['TL_CONFIG']['VenoBox']['types'][1]="iframe";
+$GLOBALS['TL_CONFIG']['VenoBox']['types'][2]="inline";
+$GLOBALS['TL_CONFIG']['VenoBox']['types'][3]="ajax";
+$GLOBALS['TL_CONFIG']['VenoBox']['types'][4]="youtube";
+$GLOBALS['TL_CONFIG']['VenoBox']['types'][5]="vimeo";
+
+//6=>$GLOBALS['TL_CONFIG']['VenoBox']['types'][6]="page2ajax";
 
 //if(TL_MODE == 'FE') {
 //    $GLOBALS['TL_CSS'][] = "/system/modules/venobox/assets/venobox/venobox.css";

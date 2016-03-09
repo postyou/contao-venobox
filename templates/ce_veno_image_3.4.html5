@@ -21,14 +21,7 @@
   </figure>
   
    <?php if(isset($this->venobox)): ?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var venoOptions={}
-            if(typeof venobox_post_open_callback  != 'undefined' && $.isFunction(venobox_post_open_callback))
-                venoOptions["post_open_callback"]=venobox_post_open_callback;
-            $(".<?php echo  $this->boxClass?>").venobox(venoOptions);
-        });
-    </script>
+       <?php if (isset($this->jsScript)){echo($this->jsScript);} ?>
 <?php endif; ?>
 
 <?php $this->endblock(); ?>
