@@ -3,7 +3,7 @@
  * Venobox for Contao
  * Extension for Contao Open Source CMS (contao.org)
  *
- * Copyright (c) 2015 POSTYOU
+ * Copyright (c) 2016 POSTYOU
  *
  * @package venobox
  * @author  Gerald Meier
@@ -79,8 +79,16 @@ class VenoBox extends \ContentElement
         $strBuffer= "<script type=\"text/javascript\">
         $(document).ready(function() {
             var venoOptions={}\n
-            if(typeof venobox_post_open_callback  != 'undefined' && $.isFunction(venobox_post_open_callback))\n
-                venoOptions[\"post_open_callback\"]=venobox_post_open_callback;\n";
+            if(typeof venobox_pre_open_callback  != 'undefined' && $.isFunction(venobox_pre_open_callback))
+                venoOptions[\"pre_open_callback\"]=venobox_pre_open_callback;\n
+			if(typeof venobox_post_open_callback  != 'undefined' && $.isFunction(venobox_post_open_callback))
+                venoOptions[\"post_open_callback\"]=venobox_post_open_callback;\n
+			if(typeof venobox_pre_close_callback  != 'undefined' && $.isFunction(venobox_pre_close_callback))
+                venoOptions[\"pre_close_callback\"]=venobox_pre_close_callback;\n
+			if(typeof venobox_post_close_callback  != 'undefined' && $.isFunction(venobox_post_close_callback))
+                venoOptions[\"post_close_callback\"]=venobox_post_close_callback;\n
+                if(typeof venobox_resize_close_callback  != 'undefined' && $.isFunction(venobox_resize_close_callback))
+                venoOptions[\"post_resize_callback\"]=venobox_resize_close_callback;\n";
         foreach ($properties as $venobox) {
             $strBuffer.= "$('.".VenoHelper::getVenoBoxClass($venobox[5])."').venobox(venoOptions)";
             if (isset($autoLoadID) && !empty($autoLoadID) && $venobox[5]==$autoLoadID) {
