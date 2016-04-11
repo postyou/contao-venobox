@@ -12,7 +12,7 @@
  */
 namespace postyou;
 
-Class VenoElement
+class VenoElement
 {
 
     private $type;
