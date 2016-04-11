@@ -15,7 +15,7 @@ namespace postyou;
 
 use Contao\Input;
 
-Class VenoHelper
+class VenoHelper
 {
 
 
