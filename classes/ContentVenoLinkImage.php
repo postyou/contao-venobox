@@ -21,7 +21,6 @@ class ContentVenoLinkImage extends ContentImage
 {
 
     protected $strTemplate = 'ce_veno_image_3.4';
-    protected $boxID;
 
     protected function compile()
     {
@@ -29,26 +28,11 @@ class ContentVenoLinkImage extends ContentImage
             $this->strTemplate='ce_veno_image_3.5';
         }
         parent::compile();
-        $this->boxID = uniqid('');
-        if (isset($this->venoList) && !empty($this->venoList)) {
-
-            $venoProperties=unserialize($this->venoList);
-            $this->boxID = $venoProperties[0][5];
-            VenoHelper::loadVenoScripts();
-            $config = $this->getArrtibutes($venoProperties);
-            $this->Template->href = $config[0];
-            $this->Template->linkTitle = $config[1];
-            $this->Template->attributes = $config[2];
-            $this->Template->venobox=true;
-            $this->Template->jsScript=VenoBox::getJs($venoProperties, Input::get("venoboxOpen"));
+        if ($this->fullsize==2) {
+            $venobox=new VenoElement($this->venoList);
+            VenoElement::loadVenoScripts();
+            $venobox->setTemplateVars4ImageTempl($this->Template);
         }
-    }
-
-
-    private function getArrtibutes($vList)
-    {
-        $elem = new VenoElement($vList[0], 1);
-        return $elem->buildHtmlArrtibutes();
     }
 
 }

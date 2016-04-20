@@ -12,16 +12,16 @@ $GLOBALS['TL_CONFIG']['VenoBox']['types'][3]="ajax";
 $GLOBALS['TL_CONFIG']['VenoBox']['types'][4]="youtube";
 $GLOBALS['TL_CONFIG']['VenoBox']['types'][5]="vimeo";
 
-//6=>$GLOBALS['TL_CONFIG']['VenoBox']['types'][6]="page2ajax";
+$GLOBALS['TL_CONFIG']['VenoBoxWizard']['fields']=array(
+    0=>"type",
+    1=>"href",
+    2=>"desc",
+    3=>"text",
+    4=>"overlayColor",
+    5=>"id"
+);
 
-//if(TL_MODE == 'FE') {
-//    $GLOBALS['TL_CSS'][] = "/system/modules/venobox/assets/venobox/venobox.css";
-//    $GLOBALS['TL_JAVASCRIPT'][] = "/system/modules/venobox/assets/venobox/venobox.js";
-//    $GLOBALS['TL_CSS'][] = 'system/modules/venobox/assets/css/frontend.css';
-//
-//}
-
-$GLOBALS['TL_HOOKS']['getContentElement'][] = array('postyou\VenoHelper', 'renderCeText');
+$GLOBALS['TL_HOOKS']['getContentElement'][] = array('postyou\VenoElement', 'renderCeText');
 
 
 ?>

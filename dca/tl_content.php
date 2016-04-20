@@ -64,7 +64,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
             foreach ($vallArr as &$value) {
                 if ($value && !empty($value)) {
                     if (!isset($value[5]) || empty($value[5])) {
-                        $veno_id=\postyou\VenoHelper::getVenoBoxID();
+                        $veno_id=uniqid('');
                         $res=$dc->Database->prepare("SELECT count(*) as count FROM tl_content WHERE venoList REGEXP ?")
                             ->execute($veno_id)->fetchAllAssoc();
                         if ($res && $res["count"] == 0 && !in_array($veno_id, $uniqArr)) {
