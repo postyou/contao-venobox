@@ -29,7 +29,7 @@ Usage with page2ajax: (display contentElements, Articles or Pages in a VenoBox b
 
 In the Venobox settings choose page2ajax (make shure you have it installed)
 In the URL input you can use the following insertTags:
- - {{article::1}} (to display an Article in the venoBox)
+ - {{article_url::1}} (to display an Article in the venoBox)
  - {{link_url::2}} (to display a page in the venoBox)
  
 To manually Link to an Element do:
