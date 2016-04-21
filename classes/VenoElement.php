@@ -12,6 +12,8 @@
  */
 namespace postyou;
 
+use Contao\Controller;
+use Contao\Environment;
 use Contao\Input;
 
 class VenoElement
@@ -107,22 +109,23 @@ class VenoElement
             if (strpos($this->href, '{{') !== false) {
                 $url=substr($this->href, 0, strpos($this->href, "{{"));
                 $tagTyp=substr($this->href, 2, strpos($this->href, "::")-2);
-                if ($this->type==6) {
-                    switch ($tagTyp) {
-                        case "link_url":
-                            $url = "action=page&amp;g=1&amp;id=";
-                            break;
-                        case "article":
-                            $url = "action=art&amp;g=1&amp;id=";
-                            break;
+                switch ($tagTyp."_".$this->type) {
+                    case "link_url_6":
+                        $url = "action=page&amp;g=1&amp;id=". str_replace(array('{{'.$tagTyp.'::', '}}'), '', $this->href);
+                        break;
+                    case "article_url_6":
+                        $url = "action=art&amp;g=1&amp;id=". str_replace(array('{{'.$tagTyp.'::', '}}'), '', $this->href);
+                        break;
+                    case "link_url_1":
+                        $url = Environment::get("base").Controller::replaceInsertTags($this->href);
+                        break;
+                    case "article_url_1":
+                        $url = Environment::get("base").Controller::replaceInsertTags($this->href);
+                        break;
                         default:
-                            $this->href = preg_replace("/\{\{(([^\{\}])*)\}\}/", "", $this->href);
-                            return "Insert_Tag_Could_Not_Be_Converted";
+                            $url = "#";
                     }
-                    $this->href= $url. str_replace(array('{{'.$tagTyp.'::', '}}'), '', $this->href);
-                }else{
-                    $this->href =Controller::replaceInsertTags($this->href);
-                }
+                    $this->href= $url;
             }
         }
     }
