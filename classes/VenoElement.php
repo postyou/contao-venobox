@@ -21,6 +21,7 @@ class VenoElement
 
     private $type;
     private $href;
+    private $loadWithScripts=false;
     private $description="";
     private $text="";
     private $overlayColor="";
@@ -39,23 +40,27 @@ class VenoElement
     private $linkCssClass="";
 
     private $galleryID=0;
+    private $configArr=0;
 
     public static $autoloadParamName="venoboxOpen";
 
     public function __construct($initArray=null,$galleryID = 1, $class = "")
     {
+        $this->configArr=$GLOBALS['TL_CONFIG']['VenoBoxWizard']['fields'];
+
         $venoBoxeProperties= VenoGenerator::getConfigArr($initArray);
         $this->setProperties($venoBoxeProperties,$galleryID, $class);
         $this->replaceHrefInsertTagsAjax();
     }
 
     private function setProperties($initArray,$galleryID = 1, $class = ""){
-        $this->type=intval($initArray[0]);
-        $this->href=$initArray[1];
-        $this->description=$initArray[2];
-        $this->text=$initArray[3];
-        $this->overlayColor = $initArray[4];
-        $this->boxID=$initArray[5];
+        $this->type=intval($initArray[$this->configArr["type"]]);
+        $this->href=$initArray[$this->configArr["href"]];
+        $this->loadWithScripts=boolval($initArray[$this->configArr["scripts"]]);
+        $this->description=$initArray[$this->configArr["desc"]];
+        $this->text=$initArray[$this->configArr["text"]];
+        $this->overlayColor = $initArray[$this->configArr["overlayColor"]];
+        $this->boxID=$initArray[$this->configArr["id"]];
 
         $this->linkCssClass=$class;
 
@@ -105,6 +110,7 @@ class VenoElement
 
     private function replaceHrefInsertTagsAjax()
     {
+
         if (preg_match("/\{\{(([^\{\}])*)\}\}/", $this->href)) {
             if (strpos($this->href, '{{') !== false) {
                 $url=substr($this->href, 0, strpos($this->href, "{{"));
@@ -125,6 +131,8 @@ class VenoElement
                         default:
                             $url = "#";
                     }
+                    if($this->type==6 && $this->loadWithScripts)
+                            $url.="&lws=1";
                     $this->href= $url;
             }
         }
@@ -243,7 +251,7 @@ class VenoElement
         if(TL_MODE!="BE") {
 
             $GLOBALS['TL_CSS'][]        = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.css";
-            $GLOBALS['TL_JAVASCRIPT'][] = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.js";
+            $GLOBALS['TL_JAVASCRIPT']['venobox'] = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.js";
             $GLOBALS['TL_CSS'][]        = 'system/modules/venobox/assets/css/frontend.css';
         }
     }

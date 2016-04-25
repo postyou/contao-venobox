@@ -57,18 +57,19 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
     'eval'                    => array('tl_class' => 'clr'),
     'sql'                     => "blob NULL",
     'load_callback' => array(function ($varValue, $dc) {
-            $vallArr=unserialize($varValue);
+        $numberOfIdField=$GLOBALS['TL_CONFIG']['VenoBoxWizard']['fields']['id'];
+        $vallArr=unserialize($varValue);
         $changed=false;
         $uniqArr=array();
         if ($vallArr && !empty($vallArr)) {
             foreach ($vallArr as &$value) {
                 if ($value && !empty($value)) {
-                    if (!isset($value[5]) || empty($value[5])) {
+                    if (!isset($value[$numberOfIdField]) || empty($value[$numberOfIdField])) {
                         $veno_id=uniqid('');
-                        $res=$dc->Database->prepare("SELECT count(*) as count FROM tl_content WHERE venoList REGEXP ?")
-                            ->execute($veno_id)->fetchAllAssoc();
+                        $res=$dc->Database->prepare("SELECT count(*) as count FROM tl_content WHERE id!=? AND venoList REGEXP ?")
+                            ->execute($dc->id,$veno_id)->fetchAllAssoc();
                         if ($res && $res["count"] == 0 && !in_array($veno_id, $uniqArr)) {
-                            $value[5]=$veno_id;
+                            $value[$numberOfIdField]=$veno_id;
                             $uniqArr[]=$veno_id;
                             $changed=true;
                         }
@@ -83,7 +84,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
             }
         }
         return serialize($vallArr);
-    })
+    }),
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['fullsize']['default'] = 0;

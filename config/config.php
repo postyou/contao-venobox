@@ -13,12 +13,13 @@ $GLOBALS['TL_CONFIG']['VenoBox']['types'][4]="youtube";
 $GLOBALS['TL_CONFIG']['VenoBox']['types'][5]="vimeo";
 
 $GLOBALS['TL_CONFIG']['VenoBoxWizard']['fields']=array(
-    0=>"type",
-    1=>"href",
-    2=>"desc",
-    3=>"text",
-    4=>"overlayColor",
-    5=>"id"
+    "type"=>0,
+    "href"=>1,
+    "scripts"=>2,
+    "desc"=>3,
+    "text"=>4,
+    "overlayColor"=>5,
+    "id"=>6
 );
 
 $GLOBALS['TL_HOOKS']['getContentElement'][] = array('postyou\VenoElement', 'renderCeText');

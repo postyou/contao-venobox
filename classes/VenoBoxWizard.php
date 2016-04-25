@@ -14,7 +14,6 @@ namespace postyou;
 
 class VenoBoxWizard extends \Widget
 {
-    private $fieldNumber = 6;
     /**
      * Submit user input
      * @var boolean
@@ -46,12 +45,16 @@ class VenoBoxWizard extends \Widget
     }
 
     /**
-     * Generate the widget and return it as string
+     * Generate the widget
      * @return string
      */
 
     public function generate()
     {
+        $GLOBALS['TL_JAVASCRIPT']['venoWiz'] = '/composer/vendor/postyou/venobox/assets/js/venoBoxWiz.js';
+
+        $fields=$GLOBALS['TL_CONFIG']['VenoBoxWizard']['fields'];
+
         $single=false;
         switch ($this->objDca->activeRecord->type) {
             case "text":
@@ -62,97 +65,14 @@ class VenoBoxWizard extends \Widget
                 break;
         }
 
-
-        echo "<script>
-    /**
-     * List wizard
-     *
-     * @param {object} el The DOM element
-     * @param {string} command The command name
-     * @param {string} id The ID of the target element
-     */
-    function myListWizard(el, command, id, name) {
-        var list = $(id),
-            parent = $(el).getParent('li'),
-            items = list.getChildren(),
-            tabindex = parseInt(list.get('data-tabindex')),
-            input, previous, next, rows, i, j;
-        Backend.getScrollOffset();
-        switch (command) {
-            case 'copy':
-                var clone = parent.clone(true).inject(parent, 'after');
-                        var i=getIndex(clone);
-                        var copybaleChildren = clone.getElementsByClassName('copybale');
-                        var textFieldsNumber = 0;
-                        for (j = 0; j < copybaleChildren.length; j++) {
-                            if (copybaleChildren[j].nodeName == 'LABEL') {
-                              copybaleChildren[j].htmlFor  = name + '[' + i + ']' + '[' + textFieldsNumber + ']';
-                            }
-                            if (copybaleChildren[j].nodeName == 'INPUT' || copybaleChildren[j].nodeName == 'SELECT') {
-//                                copybaleChildren[j].set('data-tabindex', i + 1);
-                                copybaleChildren[j].name = name + '[' + i + ']' + '[' + textFieldsNumber + ']';
-                                textFieldsNumber++;
-                            }
-                        }
-                        var noCopybaleChildren = clone.getElementsByClassName('deleteValOnCopy');
-                        for (j = 0; j < noCopybaleChildren.length; j++) {
-                            noCopybaleChildren[j].innerHTML = \"\";
-                        }
-//                    }
-                break;
-            case 'up':
-                if (previous = parent.getPrevious('li')) {
-                    parent.inject(previous, 'before');
-                } else {
-                    parent.inject(list, 'bottom');
-                }
-                break;
-            case 'down':
-                if (next = parent.getNext('li')) {
-                    parent.inject(next, 'after');
-                } else {
-                    parent.inject(list.getFirst('li'), 'before');
-                }
-                break;
-            case 'delete':
-                if (items.length > 1) {
-                    parent.destroy();
-                } else {
-                    lastOne = list.getChildren()[0];
-                    child_Length = lastOne.childNodes.length;
-                    for (i = 0; i < child_Length; i++) {
-                        if (lastOne.childNodes[i].nodeName == 'INPUT')
-                            lastOne.childNodes[i].set('value', '');
-                    }
-                }
-                break;
-        }
-        new Sortables(list, {
-            contstrain: true,
-            opacity: 0.6,
-            handle: '.drag-handle'
-        });
-    }
-    function getIndex(li) {
-    var lis = li.parentNode.getElementsByTagName('li');
-    for (var i = 0, len = lis.length; i < len; i++) {
-        if (li === lis[i]) {
-            return i;
-        }
-    }
-
-}
-
-</script>";
-
-
         $arrButtons = array('copy', 'drag', 'up', 'down', 'delete');
         if($single) {
             $arrButtons = array();
         }
-//        $arrButtons = array('copy', 'delete');
+
         $strCommand = 'cmd_' . $this->strField;
-// Change the order
+
+        // Change the order
         if (\Input::get($strCommand) && is_numeric(\Input::get('cid')) && \Input::get('id') == $this->currentRecord) {
             $this->import('Database');
             switch (\Input::get($strCommand)) {
@@ -198,12 +118,12 @@ class VenoBoxWizard extends \Widget
         if (!is_array($this->varValue) || empty($this->varValue)) {
             $initArray=array(0);
 
-            for ($i=count($initArray); $i<$this->fieldNumber; $i++) {
+            for ($i=count($initArray); $i<count($fields); $i++) {
                 $initArray[]='';
             }
             $this->varValue =array($initArray);
         }
-// Initialize the tab index
+        // Initialize the tab index
         if (!\Cache::has('tabindex')) {
             \Cache::set('tabindex', 1);
         }
@@ -214,12 +134,12 @@ class VenoBoxWizard extends \Widget
         foreach ($this->varValue as $key => $fieldValue) {
             $return .= "<li><div class='ce_venoBox_field_wrapper'><table cellpadding=''>\n";
 
-            for ($i = 0; $i < $this->fieldNumber; $i++) {
-                if ($i==0) {
+            for ($i = 0; $i < count($fields) ; $i++) {
+                if ($i==$fields["type"]) {
                     $return .= $this->createDropdownMenuAndLabel($key, $i, $tabindex, $fieldValue[$i]);
-//       elseif($i==1)
-//           $return .=$this->createInputFieldAndLabel($key,$i,"",$tabindex,specialchars($fieldValue[$i]),array(1,2));
-                } elseif ($i==5) {
+                }elseif($i==$fields["scripts"]){
+                    $return .=$this->createCheckboxAndLabel($key,$i,$tabindex,specialchars($fieldValue[$i]));
+                } elseif ($i==$fields["id"]) {
                     $return .=
                         $this->createInputFieldAndLabel($key, $i, "deleteValOnCopy", $tabindex, specialchars($fieldValue[$i]));
                 } else {
@@ -282,7 +202,7 @@ class VenoBoxWizard extends \Widget
         $return .= 'type="text" ';
         $return .= 'id="ctrl_'.$name.'" ';
         $return .= 'name="'. $name. '" class="copybale '.$classes.'"';
-        if ($i==5) {
+        if ($i==$GLOBALS['TL_CONFIG']['VenoBoxWizard']['fields']["id"]) {
             $return .= ' readonly ';
         }
         $return .= 'data-tabindex="' . $tabindex . '" value="'.$value.'"' .  $this->getAttributes()  . '/>';
