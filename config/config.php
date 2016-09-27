@@ -23,6 +23,5 @@ $GLOBALS['TL_CONFIG']['VenoBoxWizard']['fields']=array(
 );
 
 $GLOBALS['TL_HOOKS']['getContentElement'][] = array('postyou\VenoElement', 'renderCeText');
-
-
+$GLOBALS['TL_CTE']['media']['image'] = 'ContentVenoLinkImage';
 ?>
