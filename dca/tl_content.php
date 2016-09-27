@@ -104,7 +104,3 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'fullsize';
 
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_1'] = 'imageUrl';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_2'] = 'venoList';
-
-
-$GLOBALS['TL_CTE']['media']['image'] = 'ContentVenoLinkImage';
-
