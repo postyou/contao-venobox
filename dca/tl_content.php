@@ -54,7 +54,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['venoList'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_content']['venoList'],
     'exclude'                 => true,
     'inputType'               => 'venoBoxWizard',
-    'eval'                    => array('tl_class' => 'clr'),
+    'eval'                    => array('tl_class' => 'clr','doNotCopy'=>true),
     'sql'                     => "blob NULL",
     'load_callback' => array(function ($varValue, $dc) {
         $numberOfIdField=$GLOBALS['TL_CONFIG']['VenoBoxWizard']['fields']['id'];
