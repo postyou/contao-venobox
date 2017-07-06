@@ -18,7 +18,6 @@ use Contao\Input;
 
 class VenoElement
 {
-
     private $type;
     private $href;
     private $loadWithScripts=false;
@@ -44,16 +43,17 @@ class VenoElement
 
     public static $autoloadParamName="venoboxOpen";
 
-    public function __construct($initArray=null,$galleryID = 1, $class = "")
+    public function __construct($initArray=null, $galleryID = 1, $class = "")
     {
         $this->configArr=$GLOBALS['TL_CONFIG']['VenoBoxWizard']['fields'];
 
         $venoBoxeProperties= VenoGenerator::getConfigArr($initArray);
-        $this->setProperties($venoBoxeProperties,$galleryID, $class);
+        $this->setProperties($venoBoxeProperties, $galleryID, $class);
         $this->replaceHrefInsertTagsAjax();
     }
 
-    private function setProperties($initArray,$galleryID = 1, $class = ""){
+    private function setProperties($initArray, $galleryID = 1, $class = "")
+    {
         $this->type=intval($initArray[$this->configArr["type"]]);
         $this->href=$initArray[$this->configArr["href"]];
         $this->loadWithScripts=boolval($initArray[$this->configArr["scripts"]]);
@@ -91,9 +91,10 @@ class VenoElement
 
     public function buildHtml($justOpenTag = false)
     {
-        if(!$this->check4Page2Ajax())
+        if (!$this->check4Page2Ajax()) {
             return "<p>install <a href=\"https://github.com/postyou/contao-page2ajax/\">".
                    "page2ajax-extension</a> for this to work<p>".($justOpenTag?"<a>":"");
+        }
         $str="";
         $str.="<a ";
         $str.=$this->buildAtt()." ";
@@ -110,7 +111,6 @@ class VenoElement
 
     private function replaceHrefInsertTagsAjax()
     {
-
         if (preg_match("/\{\{(([^\{\}])*)\}\}/", $this->href)) {
             if (strpos($this->href, '{{') !== false) {
                 $url=substr($this->href, 0, strpos($this->href, "{{"));
@@ -131,19 +131,20 @@ class VenoElement
                         default:
                             $url = "#";
                     }
-                    if($this->type==6 && $this->loadWithScripts)
-                            $url.="&lws=1";
-                    $this->href= $url;
+                if ($this->type==6 && $this->loadWithScripts) {
+                    $url.="&lws=1";
+                }
+                $this->href= $url;
             }
         }
     }
 
-    public function setTemplateVars4ImageTempl($templateObj){
-
-        if(!$this->check4Page2Ajax()) {
+    public function setTemplateVars4ImageTempl($templateObj)
+    {
+        if (!$this->check4Page2Ajax()) {
             $templateObj->href = false;
             $templateObj->linkTitle ="VenoBox-Error";
-        }else {
+        } else {
             $templateObj->href       = $this->buildHrefStr();
             $templateObj->linkTitle  = $this->buildDescStr();
             $templateObj->attributes = $this->buildAtt();
@@ -154,7 +155,6 @@ class VenoElement
 
     private function buildDescStr()
     {
-
         $title = "";
         if (isset($this->description) && !empty($this->description)) {
             $title .= $this->description;
@@ -162,7 +162,8 @@ class VenoElement
         return $title;
     }
 
-    private function buildAtt(){
+    private function buildAtt()
+    {
         $outputType = $this->type;
         if ($this->type == 6) {
             $outputType = 3;
@@ -185,7 +186,8 @@ class VenoElement
         return $att;
     }
 
-    private function buildHrefStr(){
+    private function buildHrefStr()
+    {
         $href  = "";
         $href .= $this->href;
         if ($this->type == 3 || $this->type == 6) {
@@ -199,7 +201,8 @@ class VenoElement
         return $href;
     }
 
-    private function check4Page2Ajax(){
+    private function check4Page2Ajax()
+    {
         if ($this->type == 6) {
             if (class_exists("PageAjax")) {
                 $this->href = \PageAjax::getAjaxURL()."?" . $this->href;
@@ -213,8 +216,9 @@ class VenoElement
 
     public function getJs()
     {
-        if(TL_MODE=="BE")
+        if (TL_MODE=="BE") {
             return "";
+        }
 
         $autoLoadID=Input::get(self::$autoloadParamName);
 
@@ -248,19 +252,20 @@ class VenoElement
 
     public static function loadVenoScripts()
     {
-        if(TL_MODE!="BE") {
-
+        if (TL_MODE!="BE") {
             $GLOBALS['TL_CSS'][]        = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.css";
             $GLOBALS['TL_JAVASCRIPT']['venobox'] = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.js";
             $GLOBALS['TL_CSS'][]        = 'system/modules/venobox/assets/css/frontend.css';
         }
     }
 
-    public function addClass($classStr){
-        if(empty($this->linkCssClass))
+    public function addClass($classStr)
+    {
+        if (empty($this->linkCssClass)) {
             $this->linkCssClass=$classStr;
-        else
+        } else {
             $this->linkCssClass.=" ".$classStr;
+        }
     }
 
     public static function renderCeText($objElement, $strBuffer)
@@ -269,14 +274,14 @@ class VenoElement
 //        $elem = unserialize($objElement->venoList);
         if (isset($objElement->type) && $objElement->type=="text") {
             if ($objElement->fullsize == 2 && isset($objElement->venoList) && !empty($objElement->venoList)) {
-                if(strpos($strBuffer, "<a href")!==false) {
+                if (strpos($strBuffer, "<a href")!==false) {
                     $vElem = new VenoElement($objElement->venoList);
                     $html  = $vElem->buildHtml(true) . "\n";
                     self::loadVenoScripts();
                     $strBuffer = substr_replace(
                         $strBuffer,
                         $vElem->getJs() . "</div>",
-                        strpos($strBuffer, "</div>") - 1
+                        strrpos($strBuffer, "</div>") - 1
                     );
                     $a_start   = strpos($strBuffer, "<a href");
                     $a_end     = strpos($strBuffer, ">", $a_start) + 1;
@@ -286,6 +291,4 @@ class VenoElement
         }
         return $strBuffer;
     }
-
-
 }
