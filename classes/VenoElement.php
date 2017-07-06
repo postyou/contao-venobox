@@ -272,6 +272,7 @@ class VenoElement
     {
         //todo build veno element repalce A Tag with buildHTLM form VenoElement
 //        $elem = unserialize($objElement->venoList);
+
         if (isset($objElement->type) && $objElement->type=="text") {
             if ($objElement->fullsize == 2 && isset($objElement->venoList) && !empty($objElement->venoList)) {
                 if (strpos($strBuffer, "<a href")!==false) {
@@ -283,12 +284,15 @@ class VenoElement
                         $vElem->getJs() . "</div>",
                         strrpos($strBuffer, "</div>") - 1
                     );
+
                     $a_start   = strpos($strBuffer, "<a href");
                     $a_end     = strpos($strBuffer, ">", $a_start) + 1;
                     $strBuffer = substr_replace($strBuffer, $html, $a_start, $a_end - $a_start);
+                    $strBuffer = str_replace("ce_text", "ce_text hasVenoImage", $strBuffer);
                 }
             }
         }
+
         return $strBuffer;
     }
 }
