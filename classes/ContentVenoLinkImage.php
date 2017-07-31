@@ -22,7 +22,7 @@ class ContentVenoLinkImage extends ContentImage
 
     public function generate()
     {
-        if (isset($this->customTpl)) {
+        if (!empty($this->customTpl)) {
             $this->strTemplate = $this->customTpl;
         } elseif (version_compare(VERSION, '3.5', '>=')) {
             $this->strTemplate='ce_veno_image_3.5';
