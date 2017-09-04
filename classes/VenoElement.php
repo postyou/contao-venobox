@@ -253,9 +253,9 @@ class VenoElement
     public static function loadVenoScripts()
     {
         if (TL_MODE!="BE") {
-            $GLOBALS['TL_CSS'][]        = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.css";
+            $GLOBALS['TL_CSS'][]        = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.css|static";
             $GLOBALS['TL_JAVASCRIPT']['venobox'] = "/composer/vendor/nicolafranchini/venobox/venobox/venobox.js";
-            $GLOBALS['TL_CSS'][]        = 'system/modules/venobox/assets/css/frontend.css';
+            $GLOBALS['TL_CSS'][]        = 'system/modules/venobox/assets/css/frontend.css|static';
         }
     }
 
