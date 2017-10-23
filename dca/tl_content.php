@@ -102,5 +102,5 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['image']=
 // add Selector
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'fullsize';
 
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_1'] = 'imageUrl';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_1'] = 'imageUrl,target';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['fullsize_2'] = 'venoList';
