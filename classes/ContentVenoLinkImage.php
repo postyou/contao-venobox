@@ -34,6 +34,9 @@ class ContentVenoLinkImage extends ContentImage
 
     protected function compile()
     {
+        if ($this->fullsize==1 && $this->target!=1) {
+            $this->fullsize=0;
+        }
         parent::compile();
         if ($this->fullsize==2) {
             $venobox=new VenoElement($this->venoList);
